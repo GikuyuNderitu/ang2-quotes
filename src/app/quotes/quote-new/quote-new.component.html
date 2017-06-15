@@ -1,0 +1,42 @@
+<h1>Add a Quote</h1>
+<form #quoteForm="ngForm" (submit)="submitForm(quoteForm)">
+  <div class="input-box">
+    <div class="input">
+      <label>Quote:</label>
+      <textarea
+        rows="5"
+        name="message"
+        [(ngModel)]="newQuote.message"
+        #message="ngModel"
+        required
+        minlength="4"></textarea>
+    </div>
+    <div class="input-errors">
+      <div *ngIf="message.errors && (message.dirty || message.touched)">
+        <span class="error" *ngIf="message.errors?.required">Quote is required</span>
+        <span class="error" *ngIf="message.errors?.minlength">Quote needs 4 or more characters</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-box">
+    <div class="input">
+      <label>Author:</label>
+      <input
+        name="author"
+        type="text"
+        [(ngModel)]="newQuote.author"
+        #author="ngModel"
+        minlength="2"
+        required>
+    </div>
+    <div class="input-errors">
+      <div *ngIf="author.errors && (author.dirty || author.touched)">
+        <span class="error" *ngIf="author.errors?.required">Author is required</span>
+        <span class="error" *ngIf="author.errors?.minlength">Author needs 2 or more characters</span>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!quoteForm.form.valid">Add Quote</button>
+</form>

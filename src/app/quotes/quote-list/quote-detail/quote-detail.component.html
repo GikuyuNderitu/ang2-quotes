@@ -1,0 +1,16 @@
+<div class="quote-area">
+  <p>{{quote.message}}</p>
+  <p>- {{quote.author}}</p>
+</div>
+
+<div class="vote-area">
+  <span class="rank">
+    <span *ngIf="quote.rank > 0">+</span>
+    {{quote.rank}}
+  </span>
+  <div class="actions">
+    <button class="up" (click)="addVote(1)">Vote Up</button>
+    <button class="down" (click)="addVote(-1)">Vote Down</button>
+    <button class="delete" (click)="deleteQuote()">Delete</button>
+  </div>
+</div>
